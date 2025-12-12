@@ -9,7 +9,7 @@ session_start();
 // 定数
 const PLAYER_X = 'X'; // 人間（先手）
 const PLAYER_O = 'O'; // コンピュータ（後手）
-const EMPTY = '';
+const CELL_EMPTY = '';
 
 // --- ゲーム状態の初期化と管理 ---
 function initialize_game() {
@@ -50,14 +50,14 @@ function check_win($board, $player) {
 
 // --- 引き分け判定関数 ---
 function check_draw($board) {
-    return !in_array(EMPTY, $board);
+    return !in_array(CELL_EMPTY, $board);
 }
 
 // --- コンピュータ（O）の行動ロジック ---
 function computer_move($board) {
     $available_moves = [];
     foreach ($board as $index => $cell) {
-        if ($cell === EMPTY) {
+        if ($cell === CELL_EMPTY) {
             $available_moves[] = $index;
         }
     }
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $index = (int)$_POST['move'];
 
         // マスが空いているか確認
-        if ($index >= 0 && $index < 9 && $board[$index] === EMPTY) {
+        if ($index >= 0 && $index < 9 && $board[$index] === CELL_EMPTY) {
             
             // 1. 人間の手を反映
             $board[$index] = PLAYER_X;
@@ -233,7 +233,7 @@ $is_game_over = $game_status !== 'playing';
                 <?php for ($i = 0; $i < 9; $i++): ?>
                     <?php 
                     $value = $board[$i];
-                    $is_empty = $value === EMPTY;
+                    $is_empty = $value === CELL_EMPTY;
                     $disabled = $is_game_over || !$is_empty;
                     $class = 'cell-button ' . $value;
                     ?>
