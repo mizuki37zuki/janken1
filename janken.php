@@ -30,7 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_hand'])) {
 
     // 勝敗判定ロジック
     // (ユーザーの手 - コンピュータの手 + 3) % 3 を利用
-    // 0: あいこ, 1: ユーザーの勝ち, 2: コンピュータの勝ち
+    // 0: あいこ
+    // 1: ユーザーの負け
+    // 2: ユーザーの勝ち
     $result_value = ($user_choice - $computer_choice + 3) % 3;
 
     switch ($result_value) {
@@ -38,10 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_hand'])) {
             $result_message = '引き分け（あいこ）です！';
             break;
         case 1:
-            $result_message = 'あなたの勝ちです！おめでとうございます！🎉';
+            // 修正箇所: ユーザーの負け
+            $result_message = 'コンピュータの勝ちです。残念！';
             break;
         case 2:
-            $result_message = 'コンピュータの勝ちです。残念！';
+            // 修正箇所: ユーザーの勝ち
+            $result_message = 'あなたの勝ちです！おめでとうございます！🎉';
             break;
     }
 } else {
