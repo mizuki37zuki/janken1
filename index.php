@@ -63,6 +63,11 @@
                     <span class="emoji">✊✌️✋</span> じゃんけんゲーム
                 </a>
             </li>
+            <li>
+                <a href="./marubatsu.php">
+                    <span class="emoji">⭕❌⭕</span> 三目ならべゲーム
+                </a>
+            </li>
         </ul>
     </div>
 </body>
